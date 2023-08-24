@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Liste des auteurs - La librairie
+{% endblock %}
+
+{% block body %}
+    <h1>
+        Les auteurs de notre bibliothèque
+    </h1>
+    <p>
+        Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+        
+    </p>
+    <hr>
+    {% for auteur in auteurs %}
+        <div class="row my-3 align-items-center">
+            <div class="col-md-3">
+                {% if auteur.imageName is defined and auteur.imageName != null %}
+                    <img src="{{ asset('images/auteurs/' ~ auteur.imageName) }}" alt="{{ auteur.pseudo ? auteur.pseudo : auteur.prenom ~ ' ' ~ auteur.nom }}" class="img-fluid">
+                {% else %}
+                    <img src="{{ asset('images/auteurs/frankeinstein.png') }}" alt="pas d'image associée" class="img-fluid">
+                {% endif %}
+            </div>
+            <div class="col-md-9">
+                {% if auteur.pseudo is defined and auteur.pseudo is not null %}
+                    <h2>
+                        {{ auteur.pseudo }}
+                    </h2>
+                {% else %}
+                    <h2>
+                        {{ auteur.prenom ~ ' ' ~ auteur.nom }}
+                    </h2>
+                {% endif %}
+                <a href="{{ path('app_auteur-detail', { 'id' : auteur.id }) }}" class="btn btn-dark mt-3">Voir la fiche</a>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="navigation">
+        {{ knp_pagination_render(auteurs) }}
+    </div>
+{% endblock %}

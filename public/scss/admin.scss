@@ -1,0 +1,21 @@
+@import "_variables.scss";
+
+body{
+    .img-list-admin{
+        max-width: 100px;
+    }
+    .bg-dark {
+        background-color: $ctaColor !important;
+    }
+    .page-link{
+        padding: 0.5rem 1rem;
+    }
+    .navigation{
+        .page-item.active{
+            .page-link{
+                background-color: $ctaColor;
+                border-color: $ctaColor;
+            }
+        }
+    }
+}

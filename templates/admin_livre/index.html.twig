@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des livres - La librairie{% endblock %}
+
+{% block body %}
+    <div class="d-flex my-3">
+        <h1>Index des livres en stock</h1>
+        <span class="ms-5"><a href="{{ path('app_admin_livre_new') }}" class="btn btn-primary my-2"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
+    </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Titre</th>
+                <th>Description</th>
+                {# <th>ImageSize</th> #}
+                <th>Créé le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.id }}</td>
+                <td><img src="{{ asset('images/livres/' ~ livre.imageName) }}" alt="{{ livre.titre }}" class="img-list-admin"></td>
+                {# <td>{{ livre.imageName }}</td> #}
+                <td>{{ livre.titre }}</td>
+                <td>{{ livre.description|raw }}</td>
+                {#<td>{{ livre.imageSize }}</td> #}
+                <td>{{ livre.updatedAt ? livre.updatedAt|date('d-m-Y H:i:s') : '' }}</td>
+                <td style="width:100px">
+                    <a href="{{ path('app_admin_livre_show', {'id': livre.id}) }}" class="btn btn-sm btn-warning me-2"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('app_admin_livre_edit', {'id': livre.id}) }}" class="btn btn-sm btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun livre en rayon!</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

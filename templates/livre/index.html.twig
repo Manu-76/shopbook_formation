@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Liste des livres - La librairie
+{% endblock %}
+
+{% block body %}
+    <h1>
+        Nos livres
+    </h1>
+    <p>
+        Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+    </p>
+    <div class="form-group my-3">
+        <form action="{{ path('search-livre') }}" method="get" class="d-flex">
+            <input text="text" name="search-value" id="" class="form-control">
+                <button type="submit" class="btn btn-dark ms-2">
+                    Rechercher
+                </button>
+        </form>
+    </div>
+    <div class="row my-4">
+        {% if livres|length > 0 %}
+        {# On boucle sur la variable nommé livres passé à la vue grace a la méthode index de livrecontroller #}
+            {% for livre in livres %}
+                <div class="col-md-3 col-lg-2">
+                    {# {{dump(livre) }} #}
+                    <a href="{{ path('livre-detail', {'id': livre.id}) }}"><img src="{{ asset('images/livres/' ~ livre.imageName) }}" alt="{{ livre.titre  }}" class="img-fluid"></a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                Aucun résultat pour votre recherche
+            </div>
+        {% endif %}
+    </div>
+    <div class="navigation">
+        {{ knp_pagination_render(livres) }}
+    </div>
+{% endblock %}

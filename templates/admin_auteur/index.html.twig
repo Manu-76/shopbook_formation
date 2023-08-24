@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des auteurs - Admin La librairie{% endblock %}
+
+{% block body %}
+    <div class="d-flex my-3">
+        <h1>Index des auteurs en bibliothèque</h1>
+        <span class="ms-5"><a href="{{ path('app_admin_auteur_new') }}" class="btn btn-primary my-2"><i class="fa fa-plus" aria-hidden="true"></i></a></span>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Photo</th>
+                <th>Pseudo</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for auteur in auteurs %}
+            <tr>
+                <td>{{ auteur.id }}</td>
+                <td>
+                    {% if auteur.imageName is defined and auteur.imageName is not null %}
+                        <img src="{{ asset('images/auteurs/' ~ auteur.imageName) }}" alt="{{ auteur.pseudo ? auteur.pseudo : auteur.prenom ~ ' ' ~ auteur.nom }}" class="img-list-admin">
+                    {% else %}
+                        <img src="{{ asset('images/auteurs/frankeinstein.png') }}" alt="pas de photo" class="img-list-admin">
+                    {% endif %}
+                </td>
+                <td>{{ auteur.pseudo }}</td>
+                <td>{{ auteur.nom }}</td>
+                <td>{{ auteur.prenom }}</td>
+                <td>
+                    <a href="{{ path('app_admin_auteur_show', {'id': auteur.id}) }}" class="btn btn-warning"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('app_admin_auteur_edit', {'id': auteur.id}) }}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun auteur enregistré!</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche de {{ auteur.pseudo ? auteur.pseudo : auteur.prenom ~ ' ' ~ auteur.nom }} - Admin La librairie{% endblock %}
+
+{% block body %}
+    <div class="my-3">
+        <a href="{{ path('app_admin_auteur_index') }}" class="btn btn-dark my-2">Retour à l'index</a>
+        <h1>Voir la fiche de l'auteur {{ auteur.pseudo ? auteur.pseudo : auteur.prenom ~ ' ' ~ auteur.nom }}</h1>    
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ auteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ auteur.pseudo }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ auteur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ auteur.prenom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_auteur_edit', {'id': auteur.id}) }}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+    {{ include('admin_auteur/_delete_form.html.twig') }}
+{% endblock %}

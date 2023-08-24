@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Auteur{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('app_admin_auteur_index') }}" class="btn btn-dark my-2">Retour à l'index</a>
+    <h1>Ajouter un auteur</h1>
+
+    {{ include('admin_auteur/_form.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+<script>
+// On récupère le form avec le selecteur jquery $ et on lui ajoute un écouteur d'évenmt sur l'evt submit
+$("form[name='auteur']").on('submit', function(event){
+    // On bloque l\'envoi du form 
+    // event.preventDefault();
+    // On va vérifier si les trois champs sont vides
+    if($("#auteur_pseudo").val()=="" && $("#auteur_nom").val()=="" && $("#auteur_prenom").val()==""){
+        alert("Veuillez remplir les champs");
+        return false;
+    }
+    return true 
+});
+</script>
+{% endblock %}

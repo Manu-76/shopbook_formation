@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un livre - Admin La librairie{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('app_admin_livre_index') }}" class="btn btn-dark my-2">
+        Retour à l'index
+    </a>
+    <h1>Ajouter un livre</h1>
+
+    {{ include('admin_livre/_form.html.twig') }}
+{% endblock %}

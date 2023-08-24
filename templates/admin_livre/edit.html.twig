@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le livre - Admin La librairie{% endblock %}
+
+{% block body %}
+    <div class="my-3">
+        <a href="{{ path('app_admin_livre_index') }}" class="btn btn-dark my-2">Retour à l'index</a>
+        <h1>Modifier le livre {{ livre.titre }}</h1>
+    </div>
+
+    {{ include('admin_livre/_form.html.twig', {'button_label': ('<i class="fa fa-floppy-o" aria-hidden="true"></i>')|raw}) }}
+
+    {{ include('admin_livre/_delete_form.html.twig') }}
+{% endblock %}

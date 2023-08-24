@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Recherche de livre - La librairie
+{% endblock %}
+
+{% block body %}
+    <h1 class="my-3">
+        Recherche d'un livre
+    </h1>
+    <div class="container my-5">
+        <div class="row g-3 align-items-center">
+            {% for livre in livres %}
+                <div class="col-md-3 d-flex justify-content-center">
+                    <img src="{{ asset('images/livres/' ~ livre.imageName) }}" alt="{{ livre.titre  }}" class="img-list-admin">
+                </div>
+                <div class="col-md-9">
+                    <h2>{{ livre.titre }}</h2>
+                    <div class="my-2">
+                        {{ livre.description|raw }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

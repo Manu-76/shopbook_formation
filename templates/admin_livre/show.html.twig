@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche de {{ '"' ~ livre.titre ~ '"' }} - Admin La librairie{% endblock %}
+
+{% block body %}
+    <div class="my-3">
+        <a href="{{ path('app_admin_livre_index') }}" class="btn btn-dark my-2">Retour à l'index</a>
+        <h1>Fiche du livre {{ '"' ~ livre.titre ~ '" de l\'auteur '~ livre.auteur }}</h1>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livre.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ livre.description }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jour le</th>
+                <td>{{ livre.updatedAt ? livre.updatedAt|date('m-d-Y à  H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('app_admin_livre_edit', {'id': livre.id}) }}" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+    {{ include('admin_livre/_delete_form.html.twig') }}
+{% endblock %}

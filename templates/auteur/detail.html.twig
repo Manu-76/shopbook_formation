@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Fiche de l'auteur {{ auteur.pseudo ? auteur.pseudo : auteur.prenom ~ ' ' ~ auteur.nom }} - La librairie
+{% endblock %}
+
+{% block body %}
+    <h1 class="my-3">
+        Fiche de l'auteur {{ auteur.pseudo ? auteur.pseudo : auteur.prenom ~ ' ' ~ auteur.nom }}
+    </h1>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="{{ asset('images/auteurs/' ~ auteur.imageName) }}" alt="" class="img-fluid">
+            </div>
+            <div class="col-md-9">
+                <p class="my-2">
+                    {{ auteur.biographie }}
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,12 @@
+# config/packages/fos_ck_editor.yaml
+fos_ck_editor:
+  configs:
+    my_config:
+      toolbar: my_toolbar_1
+    my_config_2:
+      toolbar: my_toolbar_2
+      uiColor: #034222
+  toolbars:
+    configs: 
+      my_toolbar_1: [ [ "Source", "-", "Save" ], [ "Anchor" ], [ "Maximize" ] ]
+      my_toolbar_2: [ [ "Source", "Save" , "Bold", "Italic"], [ "Anchor" ], [ "Maximize" ] ]
